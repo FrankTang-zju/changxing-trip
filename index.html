@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长兴一日行程 · 主题党日活动</title>
+<style>
+  :root{
+    --paper:#f7f4ec;
+    --paper2:#fdfbf6;
+    --ink:#211e19;
+    --ink2:#443f36;
+    --muted:#7c7466;
+    --dim:#a8a091;
+    --line:#e3dbc9;
+    --line2:#d5c9b2;
+    --red:#a32b20;
+    --red2:#c2412f;
+    --redsoft:#f3e4df;
+    --gold:#b3862b;
+    --goldsoft:#f7efd9;
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",STZhongsong,"SimSun",serif;
+    --sans:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 32px}
+
+  /* 顶栏 */
+  .topbar{position:sticky;top:0;z-index:60;background:rgba(247,244,236,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .topbar-in{display:flex;align-items:center;gap:18px;height:54px;max-width:1000px;margin:0 auto;padding:0 32px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:15px;letter-spacing:.06em;white-space:nowrap}
+  .brand .sq{width:21px;height:21px;background:var(--red);display:grid;place-items:center;flex:none}
+  .brand .sq span{color:#fff;font-size:11px;font-family:var(--serif)}
+  .nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{font-size:12.5px;color:var(--muted);padding:5px 11px;border-radius:3px;white-space:nowrap;transition:.2s}
+  .nav a:hover{color:var(--ink);background:rgba(163,43,32,.06)}
+  .nav a.on{color:var(--red);background:var(--redsoft);font-weight:600}
+
+  /* 头图 */
+  .hero{position:relative;height:clamp(270px,40vw,400px);overflow:hidden;background:#2b2418}
+  .hero img{width:100%;height:100%;object-fit:cover;object-position:center 52%;display:block}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,12,.1) 0%,rgba(20,17,12,.46) 56%,rgba(20,17,12,.86) 100%)}
+  .hero-in{position:absolute;left:0;right:0;bottom:0;z-index:3;max-width:1000px;margin:0 auto;padding:0 32px 32px}
+  .hero-k{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+  .hero-k .bar{width:28px;height:2px;background:#e8b45a}
+  .hero-k span{font-size:11.5px;letter-spacing:.22em;color:#f0d9a8;font-weight:600}
+  .hero h1{font-family:var(--serif);font-size:clamp(27px,4.2vw,42px);color:#fff;line-height:1.3;font-weight:600;letter-spacing:.02em}
+  .hero h1 small{display:block;font-family:var(--sans);font-size:clamp(12.5px,1.6vw,14.5px);color:rgba(255,255,255,.74);font-weight:400;letter-spacing:.06em;margin-top:10px}
+
+  /* 章节 */
+  section{padding:50px 0;border-bottom:1px solid var(--line)}
+  .sh{display:flex;align-items:flex-start;gap:14px;margin-bottom:26px}
+  .sn{font-family:var(--serif);font-size:13px;color:#fff;background:var(--red);width:25px;height:25px;display:grid;place-items:center;flex:none;margin-top:4px}
+  .sh h2{font-family:var(--serif);font-size:clamp(21px,2.8vw,26px);font-weight:600;line-height:1.4}
+  .sh .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+  p.body{font-size:13.6px;color:var(--ink2);line-height:1.95;margin-bottom:11px}
+  p.body b{color:var(--ink);font-weight:600}
+  .hint{font-size:11.8px;color:var(--muted);line-height:1.8;margin-top:12px;padding-left:11px;border-left:2px solid var(--line2)}
+  .hint b{color:var(--red);font-weight:600}
+
+  /* 速览 */
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:16px}
+  .meta div{background:var(--paper2);padding:15px 17px}
+  .meta .k{font-size:10.5px;letter-spacing:.14em;color:var(--dim);margin-bottom:5px}
+  .meta .v{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.45}
+  .meta .v em{font-style:normal;font-size:11px;color:var(--muted);font-family:var(--sans);margin-left:4px}
+  .verdict{background:linear-gradient(100deg,var(--redsoft),rgba(243,228,223,.2));border-left:3px solid var(--red);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+  .verdict .lbl{flex:none;font-size:10.5px;letter-spacing:.12em;background:var(--red);color:#fff;padding:2px 8px;margin-top:3px}
+  .verdict p{font-size:13.5px;line-height:1.9;color:var(--ink2)}
+  .verdict p b{color:var(--red);font-weight:600}
+
+  /* 日期卡 */
+  .dates{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+  .dc{background:var(--paper2);border:1px solid var(--line);padding:15px 18px}
+  .dc.pri{border-color:rgba(163,43,32,.34);background:linear-gradient(150deg,var(--redsoft),rgba(253,251,246,.72));box-shadow:inset 3px 0 0 var(--red)}
+  .dc-top{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+  .dc-d{font-family:var(--serif);font-size:25px;color:var(--ink);line-height:1}
+  .dc-d em{font-style:normal;font-size:11.5px;color:var(--muted);font-family:var(--sans);margin-left:5px}
+  .dc-b{margin-left:auto;font-size:9.5px;letter-spacing:.1em;padding:2px 8px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
+  .dc.pri .dc-b{background:var(--red);color:#fff;border-color:var(--red)}
+  .dc-w{font-size:12.5px;color:var(--ink2);margin-bottom:5px}
+  .dc-w b{color:var(--red);font-weight:600}
+  .dc-p{font-size:11.8px;color:var(--muted);line-height:1.7}
+
+  /* 路线条 */
+  .routebar{display:flex;align-items:center;margin-top:26px;overflow-x:auto;padding-bottom:4px}
+  .rb{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:94px;flex:none}
+  .rb .dot{width:9px;height:9px;border-radius:50%;background:var(--red)}
+  .rb .nm{font-size:12px;color:var(--ink);font-family:var(--serif);white-space:nowrap}
+  .rb .tm{font-size:10.5px;color:var(--muted);white-space:nowrap}
+  .rl{flex:1;height:1px;background:var(--line2);position:relative;min-width:56px;margin-bottom:26px}
+  .rl span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--red);white-space:nowrap}
+
+  /* 时间轴 */
+  .tl-row{display:grid;grid-template-columns:74px 18px 1fr}
+  .tl-t{font-family:var(--serif);font-size:14.5px;color:var(--red);text-align:right;padding:13px 12px 0 0;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tl-line{position:relative;display:flex;justify-content:center}
+  .tl-line::before{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line2)}
+  .tl-dot{position:relative;z-index:2;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--red);margin-top:18px;flex:none}
+  .tl-row.key .tl-dot{background:var(--red);box-shadow:0 0 0 4px var(--redsoft)}
+  .tl-row:first-child .tl-line::before{top:20px}
+  .tl-row:last-child .tl-line::before{bottom:calc(100% - 20px)}
+  .tl-c{padding:7px 0 22px 18px}
+  .tl-c .h{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tl-c .h .tg{font-size:9.5px;font-weight:500;letter-spacing:.05em;padding:1px 7px;border-radius:2px;background:var(--goldsoft);color:var(--gold);border:1px solid rgba(179,134,43,.25)}
+  .tl-c .h .tg.r{background:var(--redsoft);color:var(--red);border-color:rgba(163,43,32,.2)}
+  .tl-c .d{font-size:12.8px;color:var(--ink2);line-height:1.8}
+  .tl-c .d em{font-style:normal;color:var(--red);font-weight:600}
+  .tl-c .d .sm{color:var(--muted);font-size:12px}
+
+  /* 图文卡 */
+  .spot{background:var(--paper2);border:1px solid var(--line);margin-bottom:20px;overflow:hidden}
+  .spot-txt{padding:22px 24px}
+  .spot-h{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+  .spot-h h3{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.4}
+  .spot-h .tag{font-size:10px;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(179,134,43,.3);background:var(--goldsoft);padding:2px 8px;white-space:nowrap}
+  .spot-h .tag.r{color:var(--red);background:var(--redsoft);border-color:rgba(163,43,32,.2)}
+  .photo{position:relative;overflow:hidden;background:#e9e2d3;aspect-ratio:16/9;margin:0}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .spot:hover .photo img{transform:scale(1.03)}
+  .photo figcaption{position:absolute;right:0;bottom:0;font-size:9.5px;color:rgba(255,255,255,.82);background:rgba(20,17,12,.42);padding:2px 8px;letter-spacing:.06em}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2)}
+  .duo .photo{aspect-ratio:3/4}
+
+  /* 左右分栏 · 图文并置 */
+  .side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);align-items:stretch}
+  .side .photo{aspect-ratio:auto;height:100%;min-height:260px}
+  .side .spot-txt{padding:22px 24px}
+
+  /* 三图并置 */
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2)}
+  .g3 .photo{aspect-ratio:3/4}
+
+  /* 横排图片带 */
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2);border-top:1px solid var(--line2)}
+  .strip .photo{aspect-ratio:4/3}
+  .strip.two{grid-template-columns:1fr 1fr}
+  .strip.two .photo{aspect-ratio:16/10}
+
+  /* 旧址群列表 */
+  .subh{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin:34px 0 4px;padding-left:11px;border-left:3px solid var(--red)}
+  .subh span{font-family:var(--sans);font-size:11.5px;font-weight:400;color:var(--muted);margin-left:9px}
+  .sites{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+  .site{background:var(--paper2);padding:15px 17px;display:grid;grid-template-columns:26px 1fr;gap:11px}
+  .site .no{font-family:var(--serif);font-size:12.5px;color:var(--red);background:var(--redsoft);border:1px solid rgba(163,43,32,.22);width:24px;height:24px;display:grid;place-items:center;margin-top:2px}
+  .site h4{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:2px}
+  .site .loc{font-size:10.5px;color:var(--gold);letter-spacing:.03em;margin-bottom:6px}
+  .site p{font-size:12.2px;color:var(--ink2);line-height:1.8}
+  .site p b{color:var(--ink);font-weight:600}
+
+  .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(136px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:14px}
+  .kv div{background:var(--paper2);padding:10px 13px}
+  .kv .k{font-size:10px;color:var(--dim);letter-spacing:.1em;margin-bottom:2px}
+  .kv .v{font-size:12.8px;color:var(--ink);font-weight:500}
+  .kv .v em{font-style:normal;color:var(--muted);font-weight:400;font-size:11px}
+
+  ul.li{list-style:none;margin:12px 0 0}
+  ul.li li{font-size:12.8px;color:var(--ink2);line-height:1.85;padding-left:16px;position:relative}
+  ul.li li::before{content:"";position:absolute;left:2px;top:10px;width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+  ul.li li b{color:var(--ink);font-weight:600}
+
+  /* 备选小卡 */
+  .alts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .alt{background:var(--paper2);border:1px solid var(--line);border-top:2px solid var(--line2);padding:13px 15px}
+  .alt .h{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:4px}
+  .alt p{font-size:11.8px;color:var(--muted);line-height:1.75}
+  .alt p b{color:var(--red);font-weight:600}
+
+  /* 预算 */
+  table.bd{width:100%;border-collapse:collapse;font-size:12.8px}
+  .bd th{text-align:left;font-size:10.5px;letter-spacing:.12em;color:var(--muted);font-weight:500;padding:9px 13px;background:var(--goldsoft);border:1px solid var(--line)}
+  .bd td{padding:10px 13px;border:1px solid var(--line);color:var(--ink2);background:var(--paper2)}
+  .bd td.n{font-family:var(--serif);font-size:14px;color:var(--ink);text-align:right;white-space:nowrap}
+  .bd td.c{text-align:center;color:var(--muted)}
+  .bd tr.total td{background:var(--redsoft);color:var(--ink);font-weight:600;border-color:var(--line2)}
+  .bd tr.total td.n{color:var(--red);font-size:15.5px}
+
+  /* 注意事项 */
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .note{background:var(--paper2);border:1px solid var(--line);border-top:2px solid var(--red2);padding:15px 17px}
+  .note .h{font-size:12.3px;font-weight:600;color:var(--red);margin-bottom:5px}
+  .note p{font-size:12.3px;color:var(--ink2);line-height:1.8}
+  .note p b{color:var(--ink);font-weight:600}
+
+  footer{padding:32px 0 48px;font-size:11.5px;color:var(--dim);line-height:1.9}
+  footer .tel{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;color:var(--ink2);font-size:12.3px}
+  footer .tel b{color:var(--red);font-weight:600}
+
+  @media(max-width:780px){
+    .wrap,.topbar-in,.hero-in{padding:0 18px}
+    .meta{grid-template-columns:1fr 1fr}
+    .dates{grid-template-columns:1fr}
+    .notes{grid-template-columns:1fr}
+    .alts{grid-template-columns:1fr}
+    .tl-row{grid-template-columns:58px 16px 1fr}
+    .tl-t{font-size:13px;padding-right:8px}
+    .tl-c{padding-left:13px}
+    section{padding:38px 0}
+    .duo{grid-template-columns:1fr}
+    .duo .photo{aspect-ratio:4/3}
+    .side{grid-template-columns:1fr}
+    .side .photo{aspect-ratio:4/3;min-height:0}
+    .g3{grid-template-columns:1fr 1fr}
+    .g3 .photo{aspect-ratio:1/1}
+    .strip{grid-template-columns:1fr 1fr}
+    .strip .photo{aspect-ratio:1/1}
+    .sites{grid-template-columns:1fr}
+    .spot-txt{padding:18px}
+  }
+  @media print{
+    body{background:#fff}
+    .topbar{display:none}
+    section{page-break-inside:avoid}
+    .hero{height:240px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand"><div class="sq"><span>党</span></div>长兴一日行程</div>
+    <nav class="nav">
+      <a href="#overview" class="on">速览</a>
+      <a href="#tl">行程</a>
+      <a href="#am">上午</a>
+      <a href="#lunch">午餐</a>
+      <a href="#pm">下午</a>
+      <a href="#budget">预算</a>
+      <a href="#notes">注意事项</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <img src="assets/pm-real-train.jpg" alt="八都岕银杏公园小火车">
+  <div class="hero-in">
+    <div class="hero-k"><span class="bar"></span><span>主题党日活动 · 2026 年 11 月</span></div>
+    <h1>长兴一日行程
+      <small>新四军苏浙军区纪念馆 · 江南红村 · 八都岕十里古银杏长廊</small>
+    </h1>
+  </div>
+</div>
+
+<!-- ============ 速览 ============ -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">一</div>
+      <div>
+        <h2>速览</h2>
+        <div class="sub">杭州拱墅出发 · 包车往返 · 10 人 · 当日晚间返杭</div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div><div class="k">主选日期</div><div class="v">11/21<em>周六 · 晴</em></div></div>
+      <div><div class="k">备选日期</div><div class="v">11/22<em>周日 · 多云</em></div></div>
+      <div><div class="k">出发</div><div class="v">08:50<em>拱墅滨绿大厦 B 座</em></div></div>
+      <div><div class="k">返程</div><div class="v">17:30<em>约 19:20 抵杭</em></div></div>
+    </div>
+
+    <div class="dates">
+      <div class="dc pri">
+        <div class="dc-top"><div class="dc-d">11/21<em>周六</em></div><span class="dc-b">主选</span></div>
+        <div class="dc-w">晴 · <b>13/5℃</b> · 西风 2 级 · 降水 0%</div>
+        <div class="dc-p">晴天通透，银杏逆光透亮，是今年观赏巅峰期。代价是周六客流最大，需按逆向走法规避。</div>
+      </div>
+      <div class="dc">
+        <div class="dc-top"><div class="dc-d">11/22<em>周日</em></div><span class="dc-b">备选</span></div>
+        <div class="dc-w">多云 · <b>15/8℃</b> · 东南风 2 级 · 降水 0%</div>
+        <div class="dc-p">气温更暖，户外停留更舒服，多云散射光拍集体照不易出现明暗不均。行程时间完全一致，可直接顺延。</div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <span class="lbl">一句话</span>
+      <p>
+        上午到长兴看 <b>「江南小延安」</b>，中午在仰峰村吃一顿本地农家餐，下午去八都岕走金黄色的银杏长廊，
+        17:30 从景区发车返杭。全程 <b>约 290 公里</b>，行车累计约 5 小时，节奏不赶。
+      </p>
+    </div>
+
+    <div class="routebar">
+      <div class="rb"><div class="dot"></div><div class="nm">拱墅滨绿大厦</div><div class="tm">08:50</div></div>
+      <div class="rl"><span>125km · 2h</span></div>
+      <div class="rb"><div class="dot"></div><div class="nm">新四军纪念馆</div><div class="tm">10:50</div></div>
+      <div class="rl"><span>4km · 8min</span></div>
+      <div class="rb"><div class="dot"></div><div class="nm">仰峰村午餐</div><div class="tm">12:45</div></div>
+      <div class="rl"><span>42km · 55min</span></div>
+      <div class="rb"><div class="dot"></div><div class="nm">八都岕</div><div class="tm">14:40</div></div>
+      <div class="rl"><span>120km · 1h55</span></div>
+      <div class="rb"><div class="dot"></div><div class="nm">返杭</div><div class="tm">19:20</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 行程 ============ -->
+<section id="tl">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">二</div>
+      <div>
+        <h2>当日行程</h2>
+        <div class="sub">以 11/21（周六）为例 · 备选日 11/22 时间不变</div>
+      </div>
+    </div>
+
+    <div class="tl-row key">
+      <div class="tl-t">08:50</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">拱墅滨绿大厦 B 座集合出发 <span class="tg r">起点</span></div>
+        <div class="d">大巴 08:35 提前到位，清点人数后发车。走 G25 长深高速，约 <em>125 公里 / 2 小时</em>。</div>
+      </div>
+    </div>
+
+    <div class="tl-row key">
+      <div class="tl-t">10:50</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">到馆 · 参观新四军苏浙军区纪念馆</div>
+        <div class="d">长兴县煤山镇温塘村。<em>约 60 分钟</em>，建议预约讲解，跟着讲解走完全程比自行观看高效得多。</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-t">11:50</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">江南红村 · 旧址群参观 <span class="tg">步行可达</span></div>
+        <div class="d">紧邻纪念馆，徽派建筑群，约 <em>45 分钟</em>。看马头墙、N4A 造型建筑与周边革命旧址。</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-t">12:35</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">车赴仰峰村 <span class="tg">4 公里 / 8 分钟</span></div>
+        <div class="d">沿槐坎乡道向西北进入仰峰村。</div>
+      </div>
+    </div>
+
+    <div class="tl-row key">
+      <div class="tl-t">12:45<br><span style="font-size:10.5px;color:var(--muted)">—13:45</span></div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">午餐 · 仰峰农家乐 <span class="tg">团队桌餐</span></div>
+        <div class="d">10 人一桌，人均 60–75 元标准。<em>土鸡煲、笋干老鸭、红烧肉、溪鱼</em>是本地常规菜式，米饭用本地米。</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-t">13:45</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">车赴八都岕 <span class="tg">42 公里 / 55 分钟</span></div>
+        <div class="d">经煤山、长兴至小浦，从长兴西方向进入景区。<em>大巴直接停游客中心</em>，不要驶入长廊。</div>
+      </div>
+    </div>
+
+    <div class="tl-row key">
+      <div class="tl-t">14:40<br><span style="font-size:10.5px;color:var(--muted)">—16:45</span></div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">八都岕十里古银杏长廊 <span class="tg">秋景游览</span></div>
+        <div class="d">约 <em>2 小时</em>。景交车直达最深处，再由内向外走：空王教寺 → 八都堰 → 古银杏公园 → 银杏老街。</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-t">16:45<br><span style="font-size:10.5px;color:var(--muted)">—17:30</span></div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">老街自由活动 · 集合上车</div>
+        <div class="d">买白果、番薯干、红柿等土产，45 分钟缓冲用于应对景交车排队与人员分散。</div>
+      </div>
+    </div>
+
+    <div class="tl-row key">
+      <div class="tl-t">17:30</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">发车返杭 <span class="tg r">返程</span></div>
+        <div class="d">G50 沪渝高速转杭宁高速，约 <em>120 公里 / 1 小时 55 分</em>。</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-t">19:20</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-c">
+        <div class="h">抵达杭州拱墅，行程结束</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 上午 ============ -->
+<section id="am">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">三</div>
+      <div>
+        <h2>上午 · 纪念馆与红村</h2>
+        <div class="sub">全国爱国主义教育示范基地 · 全国重点文物保护单位 · 国家 4A 级景区</div>
+      </div>
+    </div>
+
+    <div class="spot">
+      <figure class="photo">
+        <img src="assets/am-hall.jpg" alt="纪念馆展厅武器陈列">
+        <figcaption>实拍 · 展厅中央的武器陈列</figcaption>
+      </figure>
+      <div class="strip">
+        <figure class="photo">
+          <img src="assets/am-monument.jpg" alt="新四军苏浙军区纪念碑">
+          <figcaption>实拍 · N4A 纪念碑</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="assets/am-ashes.jpg" alt="粟裕同志骨灰敬撒处">
+          <figcaption>实拍 · 粟裕同志骨灰敬撒处</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="assets/am-cannon.jpg" alt="纪念馆草坪上的退役火炮">
+          <figcaption>实拍 · 草坪退役火炮</figcaption>
+        </figure>
+      </div>
+      <div class="spot-txt">
+        <div class="spot-h">
+          <h3>新四军苏浙军区纪念馆</h3>
+          <span class="tag r">核心节点 · 免费</span>
+        </div>
+        <p class="body">
+          长兴被称为 <b>「江南小延安」</b>。1945 年 1 月 13 日，中央军委电令成立新四军苏浙军区，粟裕任司令员，
+          统一指挥苏南、浙西、浙东、皖南党政军工作，军区辖 4 个纵队、兵力逾 2.3 万人，建立了 14 个县级抗日民主政权，
+          是抗战后期华中敌后的重要战略支点，从这里走出了 <b>52 位共和国将军</b>。
+        </p>
+        <p class="body">
+          纪念馆本身是清代咸丰年间的民宅，150 余年历史，四面高墙、前后两进五开间的走马楼，共 46 间房。
+          展陈分《浙西丰碑》《红色标杆》《红色记忆》三部分，展出文物 130 余件、军事武器 35 件、珍贵照片 240 余幅。
+        </p>
+
+        <div class="subh" style="margin-top:22px;font-size:14.5px">馆内看什么</div>
+        <ul class="li">
+          <li><b>展厅中央展柜</b>　一门木轮火炮、一挺重机枪和几支步枪并排架在射灯下，背后整面墙是战斗场景的喷绘，是全馆最抓眼的一处。</li>
+          <li><b>两侧低展柜</b>　瓷碗、帆布袋、木槌、磨石、油灯这些部队日常物件，比武器更能说明当年是怎么过日子的。</li>
+          <li><b>《浙西丰碑》基本陈列</b>　按时间线讲 1943 年秋十六旅挺进长兴、到 1945 年 10 月北撤的全过程，跟着讲解走一遍最省力。</li>
+          <li><b>庭院西侧 · 粟裕同志骨灰敬撒处</b>　碑石藏在松树下，常年有花篮。1984 年粟裕逝世后，部分骨灰撒在他战斗过的长兴山区，此处立碑纪念。</li>
+          <li><b>门前广场 · N4A 纪念碑</b>　红褐色碑体上三个金色大字，碑座正面是张震题写的「新四军苏浙军区纪念碑」，是团队合影的标准位置。</li>
+          <li><b>草坪上的退役火炮</b>　几门不同口径的退役火炮散在草地上，可近看炮身铭牌，是全程唯一能靠近实物装备的地方。</li>
+        </ul>
+
+        <div class="kv">
+          <div><div class="k">开放时间</div><div class="v">08:30–16:15 <em>16:00 停止入馆</em></div></div>
+          <div><div class="k">门票</div><div class="v">免费 <em>需实名预约</em></div></div>
+          <div><div class="k">预约</div><div class="v">微信公众号 / 浙里办</div></div>
+          <div><div class="k">电话</div><div class="v">0572-6078039</div></div>
+          <div><div class="k">建议时长</div><div class="v">约 60 分钟</div></div>
+        </div>
+        <ul class="li">
+          <li><b>提前 3–5 天预约团队参观</b>，同时申请讲解服务。周末团队较多，现场临时申请容易碰壁。</li>
+          <li><b>60 分钟的走法：</b>展厅 35 分钟 → 庭院骨灰敬撒处 10 分钟 → 门前广场纪念碑与火炮 10 分钟 → 上车。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spot">
+      <div class="side">
+        <figure class="photo">
+          <img src="assets/hr-sculpture.jpg" alt="江南红村 N4A 红色雕塑">
+          <figcaption>实拍 · 广场上的 N4A 雕塑</figcaption>
+        </figure>
+        <div class="spot-txt">
+          <div class="spot-h">
+            <h3>江南红村</h3>
+            <span class="tag">距纪念馆步行可达</span>
+          </div>
+          <p class="body">
+            纪念馆的配套服务设施，也是苏浙军区旧址群的重要组成部分。徽派风格建筑群，俯瞰呈 <b>「N4A」</b> 造型。
+          </p>
+          <p class="body">
+            广场上立着一座红色的抽象雕塑，基座侧面刻着「新四军」与 <b>N4A</b> 大字，是红村最好认的地标，
+            也是团队照的第一站。
+          </p>
+          <div class="kv">
+            <div><div class="k">门票</div><div class="v">免费 <em>无需购票</em></div></div>
+            <div><div class="k">营业时间</div><div class="v">08:00–16:30</div></div>
+            <div><div class="k">电话</div><div class="v">0572-6776688</div></div>
+            <div><div class="k">建议时长</div><div class="v">约 45 分钟</div></div>
+          </div>
+          <ul class="li">
+            <li>红村内有会议室、餐饮与住宿配套，若临时需要室内集合或避雨，可提前联系 0572-6776688。</li>
+            <li><b>免费开放</b>，纪念馆与红村一路走下来不产生门票支出，上午的预算就是车费和讲解费。</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="photo" style="aspect-ratio:16/9">
+        <img src="assets/hr-courtyard.jpg" alt="江南红村天井">
+        <figcaption>实拍 · 红村天井：党徽石与年份光帘</figcaption>
+      </figure>
+      <div class="spot-txt" style="padding-top:0">
+        <p class="body">
+          穿过门厅是建筑的中心——一方天井。正中巨石上刻着党徽，两侧垂下成排的玻璃光帘，帘上悬着
+          <b>1921 到 2021</b> 的年份，从「星火初燃」到「艰难探索」「扬帆改革」，把百年党史串成一条时间线，
+          尽头是一面党旗。木构两层回廊四面围合，光线从头顶落下来，是红村最耐看、也最适合拍集体照的地方。
+        </p>
+        <ul class="li">
+          <li>天井四周的回廊是拍照人多的地方，45 分钟里留 10 分钟集中合影，其余时间自由看展陈。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subh">旧址群 · 十处可看的点<span>全国重点文物保护单位 · 2001 年国务院公布</span></div>
+    <p class="body" style="margin-top:10px">
+      以司令部为中心，星状分布在槐坎、白岘一带近百平方公里的山坳里。除了司令部与粟裕住所，
+      多数是藏在自然村里的民宅，没有展陈、无人值守，看的是<b>房子本身和它所在的那条山沟</b>。
+      按你们半天的节奏，建议只顺路看「司令部 + 粟裕宿舍」，其余当背景知识了解即可。
+    </p>
+
+    <div class="sites">
+      <div class="site">
+        <div class="no">01</div>
+        <div>
+          <h4>被服厂旧址</h4>
+          <div class="loc">白岘乡和岕口村 · 横岭岕</div>
+          <p>军区供给部在原十六旅被服厂基础上扩建。敌人封锁买不到纽扣，一名战士用毛竹削成竹片纽扣钉在军衣上，漂亮耐用，全军仿效，<b>竹纽扣成了苏浙军区军衣的一大特色</b>。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">02</div>
+        <div>
+          <h4>修枪所旧址</h4>
+          <div class="loc">白岘乡和岕口村 · 水曲岕</div>
+          <p>藏在山涧边的老屋里，负责修理马克沁、捷克式重机枪等枪械，与石臼村兵工厂配套。当年这一带机械声、金属敲击声叮叮当当，被军民叫作<b>「我们这儿的延安」</b>。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">03</div>
+        <div>
+          <h4>苏南区行政公署</h4>
+          <div class="loc">白岘乡三州山村 · 尚阳</div>
+          <p>1945 年 2 月随军区迁此办公，管根据地政权建设。同期筹建江南印钞厂、江南银行，发行壹元、伍元、拾元<b>抗币</b>，老百姓拿着贬值的法币来兑换。屋旁有一棵百年银杏。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">04</div>
+        <div>
+          <h4>鞋子厂旧址</h4>
+          <div class="loc">白岘乡白岘村 · 丁岕</div>
+          <p>粟裕要求「战士必须有饭吃，还要有衣服、鞋子穿，这样才有战斗力」，供给部因此办起鞋子厂。战斗间隙，根据地出现南泥湾式的军民大生产场面。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">05</div>
+        <div>
+          <h4>粟裕宿舍及办公室旧址</h4>
+          <div class="loc">槐坎乡仰峰村 · 村中心</div>
+          <p>粟裕在此住了十个月，住在第三进二楼西侧，里间卧室、外间办公室，用的是房东的雕花木床、三屉桌、竹靠椅、油盏灯，取暖的火盆是一只破铁锅。<b>天目山三次反顽战役的决策就出自这间屋子。</b></p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">06</div>
+        <div>
+          <h4>新四军苏浙军区司令部</h4>
+          <div class="loc">槐坎乡仰峰岕 · 沈家大院</div>
+          <p>清光绪年间的徽派建筑，坐西朝东、背靠仰峰岭，前后三进五开间两层楼加左右侧房，沈家三兄弟所建。1944 年冬王必成驻扎于此，粟裕到后让出作司令部，自己移驻 4 公里外的温塘。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">07</div>
+        <div>
+          <h4>一纵队司令部</h4>
+          <div class="loc">槐坎乡新槐村 · 温塘（纪念馆所在村）</div>
+          <p>王必成的纵队部，就在纪念馆同一个村子里，<b>步行可达</b>。1945 年 2 月 10 日夜，一纵由此出发向莫干山挺进，此后参加天目山三次反顽战役。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">08</div>
+        <div>
+          <h4>苏浙公学旧址</h4>
+          <div class="loc">槐坎乡十月村 · 台基（距集镇 0.5 公里）</div>
+          <p>1945 年 2 月 22 日创办的「抗大」式学校，粟裕兼校长，设军事、经济、文化三系，两期学员 1400 余名，编七个中队含一个女生队。学员睡竹榻、坐竹椅、点竹片灯、写竹枝笔，戏称<b>「竹子世界打天下」</b>。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">09</div>
+        <div>
+          <h4>中共长兴县委旧址</h4>
+          <div class="loc">槐坎乡新槐村 · 桥下</div>
+          <p>与县抗日民主政府同村相邻，不远处就是新槐煤矿。县委在此领导根据地的组织建设与群众动员，是「江南小延安」党政体系落地的一环。</p>
+        </div>
+      </div>
+      <div class="site">
+        <div class="no">10</div>
+        <div>
+          <h4>长兴县抗日民主政府旧址</h4>
+          <div class="loc">槐坎乡新槐村 · 桥下</div>
+          <p>县级抗日民主政权机关，与县委合署办公，承担根据地行政、征粮与支前工作。两处旧址隔路相望，可一并看外观。</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">
+      <b>实用提示：</b>这十处里，经修复布展、常态对外开放的只有<b>司令部、一纵队司令部、粟裕宿舍及办公室</b>三处，
+      其余多数是自然村里的民宅外观，门常常是锁着的，且分散在不同山沟、彼此车程十几分钟。
+      你们上午只有 100 分钟，<b>不建议专程去白岘方向找厂址</b>；想去司令部，最顺的是把它并进「纪念馆 → 仰峰村午餐」这一段。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 午餐 ============ -->
+<section id="lunch">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">四</div>
+      <div>
+        <h2>午餐 · 仰峰农家餐</h2>
+        <div class="sub">距纪念馆约 4 公里，符合「5 公里内」要求 · 省级农家乐特色村</div>
+      </div>
+    </div>
+
+    <div class="spot">
+      <figure class="photo">
+        <img src="assets/lunch.jpg" alt="农家菜">
+        <figcaption>示意图 · 本地农家菜</figcaption>
+      </figure>
+      <div class="spot-txt">
+        <div class="spot-h">
+          <h3>仰峰农家乐 · 主选</h3>
+          <span class="tag">人均 60–75 元</span>
+        </div>
+        <p class="body">
+          仰峰村是省级农家乐特色村，森林覆盖率 80% 以上，村口到纪念馆开车只要 <b>8 分钟</b>。这条沟里散着十几家农家乐，
+          其中 <b>仰峰农家乐</b> 规模最大、有独立包间和院内停车，10 人的团队桌餐好安排，大巴掉头也不费劲。
+        </p>
+        <p class="body">
+          菜式是长兴山里的家常路子：<b>土鸡煲、笋干老鸭、红烧肉、溪鱼、番薯粉、山上青菜</b>，
+          主食是本地米，饭后可以要一壶当地的白茶。想加硬菜的话，提前一天说，村里能订到牛头。
+        </p>
+        <div class="kv">
+          <div><div class="k">地址</div><div class="v">煤山镇仰峰村</div></div>
+          <div><div class="k">电话</div><div class="v">0572-6789818 <em>备 6789567</em></div></div>
+          <div><div class="k">参考标准</div><div class="v">60–75 元/人</div></div>
+          <div><div class="k">10 人一桌</div><div class="v">约 700 元</div></div>
+        </div>
+        <ul class="li">
+          <li><b>提前一天电话订桌</b>，说清「10 人、一桌、12:45 到、人均 60–75 元、要包间」。周末银杏季村里桌位紧张。</li>
+          <li>到店先点菜再落座，山里灶头现烧，<b>预留 60 分钟用餐</b>比较稳妥，别压缩到 40 分钟。</li>
+        </ul>
+
+        <div class="alts">
+          <div class="alt">
+            <div class="h">备选一 · 红米饭农家乐</div>
+            <p>仰峰村 162 号，<b>招牌牛头</b>，10 人半个牛头正好。牛头要煮 3–7 小时，<b>必须提前一天订</b>。13757228165</p>
+          </div>
+          <div class="alt">
+            <div class="h">备选二 · 仰丰私房菜</div>
+            <p>仰峰村 161 号，腾讯地图 <b>4.1 分</b>，门面不大、以散客为主，10 人需提前问能否拼桌。13665750994</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 下午 ============ -->
+<section id="pm">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">五</div>
+      <div>
+        <h2>下午 · 八都岕十里古银杏长廊</h2>
+        <div class="sub">12.5 公里山谷 · 3 万余株银杏 · 百年以上古树逾 600 株</div>
+      </div>
+    </div>
+
+    <p class="body">
+      华东少见的古银杏集中地。银杏就长在村民房前屋后，白墙黛瓦半掩在金色树冠下，落叶铺满柏油路和青石板。
+      今年官方口径是最佳观赏期 11 月中旬至 12 月初，<b>11 月 20 日前后全域金黄</b>——21 日去，正踩在巅峰上。
+    </p>
+
+    <div class="spot" style="margin-top:20px">
+      <div class="side">
+        <figure class="photo">
+          <img src="assets/pm-real-tree.jpg" alt="八都岕银杏变色对比">
+          <figcaption>实拍对比 · 11/7 与 11/14</figcaption>
+        </figure>
+        <div class="spot-txt">
+          <div class="spot-h">
+            <h3>变色实况</h3>
+            <span class="tag r">一周之差</span>
+          </div>
+          <p class="body" style="margin-bottom:8px">
+            同一棵树，<b>11 月 7 日</b>还是黄绿交错，到 <b>11 月 14 日</b>已经是整树金黄。
+            按这个节奏，21 日进谷时叶色基本全黄，正处在「树上满金、地上开始铺叶」的状态。
+          </p>
+          <ul class="li" style="margin-top:2px">
+            <li>变色速度<b>一天一个样</b>，出发前一天再刷一次景区公众号或小红书「今天实拍」。</li>
+            <li>若 21 日前有大风或降雨，树上叶子会掉一批，但地上金毯更厚，观感不降反升。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot">
+      <div class="g3">
+        <figure class="photo">
+          <img src="assets/pm-real-train.jpg" alt="八都岕小火车">
+          <figcaption>实拍 · 银杏公园小火车</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="assets/pm-real-park.jpg" alt="八都岕古银杏公园">
+          <figcaption>实拍 · 古银杏公园草坪</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="assets/pm-real-temple.jpg" alt="空王教寺">
+          <figcaption>实拍 · 空王教寺黄墙金叶</figcaption>
+        </figure>
+      </div>
+      <div class="spot-txt">
+        <div class="spot-h">
+          <h3>四个必看点</h3>
+          <span class="tag r">建议逆向游览</span>
+        </div>
+        <ul class="li" style="margin-top:4px">
+          <li><b>空王教寺 · 银杏皇后</b>　大岕口村，约 1500 年树龄，明黄院墙配金叶垂檐，全场最出片。院墙前那面「南无阿弥陀佛」的圆拱门是标准机位。</li>
+          <li><b>古银杏公园 · 银杏王</b>　方一村，约 1300 年，胸围 4 米、高约 30 米，四人合抱。园区里还有红色观光小火车穿林而过，是小红书出现频率最高的画面。</li>
+          <li><b>八都堰</b>　方岩村，湖面倒映金色银杏，人最少，适合安静拍照。</li>
+          <li><b>银杏老街</b>　白果、番薯干、红柿等土产，返程前的采购点。</li>
+        </ul>
+        <div class="kv">
+          <div><div class="k">门票</div><div class="v">40 元 <em>门市 60</em></div></div>
+          <div><div class="k">景交车</div><div class="v">20 元 <em>当天不限次</em></div></div>
+          <div><div class="k">联票</div><div class="v">50 元 <em>门票+景交</em></div></div>
+          <div><div class="k">开放时间</div><div class="v">08:00–17:00 <em>16:30 停止入园</em></div></div>
+          <div><div class="k">景区电话</div><div class="v">0572-6071888</div></div>
+        </div>
+        <ul class="li">
+          <li><b>逆向走法：</b>进园直接坐景交车到最深处空王教寺，再一路往外走。大部分人从方一村开始，反着走能避开主流人流。</li>
+          <li><b>线上提前购票</b>比现场便宜，也免排队；60–69 周岁与退役军人可购优惠票。</li>
+          <li>小火车单收 30 元/人、玻璃桥 60 元/人，均不在联票内，10 人按需再定。</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="hint">
+      <b>时间提示：</b>景区 16:30 停止入园、17:00 闭园。14:40 进园后只有约 2 小时，
+      建议只走「空王教寺—八都堰—银杏王—老街」这条精简线，不要贪多。
+      21 日是周六，上午是入园高峰，你们下午两点半以后到，人流正好开始回落，反而是好时段。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 预算 ============ -->
+<section id="budget">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">六</div>
+      <div>
+        <h2>费用预算</h2>
+        <div class="sub">按 10 人计</div>
+      </div>
+    </div>
+
+    <table class="bd">
+      <thead>
+        <tr><th style="width:20%">项目</th><th style="width:48%">说明</th><th style="width:10%;text-align:center">单价</th><th style="width:22%;text-align:right">小计</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>包车</td><td>19–23 座考斯特，全天包干价（含路桥、超里程、司机餐补）</td><td class="c">—</td><td class="n">2,000–2,400</td></tr>
+        <tr><td>纪念馆</td><td>免费开放，需预约；讲解若选收费档约 100–200 元/场</td><td class="c">0</td><td class="n">0–200</td></tr>
+        <tr><td>江南红村</td><td>免费开放，无需购票</td><td class="c">0</td><td class="n">0</td></tr>
+        <tr><td>午餐</td><td>仰峰农家乐，10 人团队桌餐，60–70 元/人标准</td><td class="c">70</td><td class="n">700</td></tr>
+        <tr><td>八都岕</td><td>景交车联票 50 元/人（大门票 + 当天不限次景交车）</td><td class="c">50</td><td class="n">500</td></tr>
+        <tr><td>保险</td><td>一日游意外险</td><td class="c">15</td><td class="n">150</td></tr>
+        <tr><td>物资</td><td>饮用水、简易药箱、横幅</td><td class="c">—</td><td class="n">100</td></tr>
+        <tr class="total"><td>合计</td><td>不含小火车（+30 元/人）与玻璃桥（+60 元/人）</td><td class="c">—</td><td class="n">3,450–4,050</td></tr>
+        <tr class="total"><td>人均</td><td>10 人分摊</td><td class="c">—</td><td class="n">约 345–405</td></tr>
+      </tbody>
+    </table>
+
+    <p class="hint" style="margin-top:14px">
+      <b>省钱要点：</b>上午的纪念馆和江南红村都<b>免费开放</b>，全天门票支出只有八都岕的联票 500 元，大头是车和餐。
+      10 人不必包 33 座大巴，19–23 座考斯特便宜 400–600 元，且在八都岕旺季更容易找到车位。
+      包车合同要写清「含不含路桥费、超里程与超时如何计费」——本行程实际约 12.5 小时、
+      290 公里，远超 8 小时 / 100 公里的标准套餐，这三项是加价高发区。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 注意事项 ============ -->
+<section id="notes">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sn">七</div>
+      <div>
+        <h2>注意事项</h2>
+        <div class="sub">出发前 5 天完成预约，前 1 天完成确认</div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <div class="h">纪念馆要预约</div>
+        <p>免费但不接待未预约团队。<b>提前 3–5 天</b>在「长兴县新四军苏浙军区纪念馆」公众号或浙里办预约，同时申请讲解。电话 0572-6078039。</p>
+      </div>
+      <div class="note">
+        <div class="h">午餐要订桌</div>
+        <p>仰峰农家乐 <b>提前一天</b>订 10 人桌，讲清「12:45 到、人均 60–75 元、要包间」。0572-6789818。当天上午再电话确认一次。</p>
+      </div>
+      <div class="note">
+        <div class="h">周六客流</div>
+        <p>21 日是银杏巅峰期叠加周六，是全年最挤的一天。<b>线上先买好票</b>、进园就坐景交车到最深处，别在入口逗留拍照。</p>
+      </div>
+      <div class="note">
+        <div class="h">大巴停哪</div>
+        <p>八都岕<b>严禁大巴驶入长廊</b>，一律停游客中心。提前打 0572-6071888 报备团队与车辆，确认大车停车位置。</p>
+      </div>
+      <div class="note">
+        <div class="h">时间卡点</div>
+        <p>景区 16:30 停止入园、17:00 闭园。<b>13:45 必须从餐厅出发</b>，否则下午时间会被压缩到不足 1.5 小时。</p>
+      </div>
+      <div class="note">
+        <div class="h">穿搭与鞋</div>
+        <p>银杏落叶与落果在青石板路上极滑，<b>务必穿防滑平底鞋</b>。21 日 5–13℃，山区早晚温差大，带一件薄外套。</p>
+      </div>
+      <div class="note">
+        <div class="h">天气与备选日</div>
+        <p>若 21 日转雨或风力达 4 级以上，<b>整体顺延到 22 日</b>，时间安排不变。两日都不可行时，下午改大唐贡茶院（水口乡，75 元含茶，0572-6552777）。</p>
+      </div>
+      <div class="note">
+        <div class="h">人员照看</div>
+        <p>长廊跨度 12.5 公里，景区内信号一般。<b>两人一组、定点集合</b>，每段结束清点人数，随身存领队与景区电话。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="tel">
+      <span>纪念馆 <b>0572-6078039</b></span>
+      <span>江南红村 <b>0572-6776688</b></span>
+      <span>仰峰农家乐 <b>0572-6789818</b></span>
+      <span>红米饭农家乐 <b>13757228165</b></span>
+      <span>八都岕景区 <b>0572-6071888</b></span>
+      <span>大唐贡茶院 <b>0572-6552777</b></span>
+    </div>
+    说明：景点开放时间、级别与展陈信息来自景区官方公众号及携程、大众点评公开页面；票价与优惠政策来自景区 2026 年 10 月公示；
+    银杏变色节奏参考长兴县官方 11 月 11 日发布；天气数据来自中央气象台 11 月 16 日预报；车程与里程按导航常规口径估算，遇拥堵可能延长；
+    包车价格参考杭州本地租车市场公开报价；旧址群分布与史实细节来自长兴县人民政府网及纪念馆公开资料。
+    页面中纪念馆、江南红村、八都岕的实拍图由用户提供（部分源自小红书网友分享），仅「午餐」一张为 AI 生成的示意图。
+  </div>
+</footer>
+
+<script>
+(function(){
+  var links = document.querySelectorAll('.nav a');
+  var secs = [];
+  links.forEach(function(a){
+    var t = document.querySelector(a.getAttribute('href'));
+    if(t) secs.push({a:a, t:t});
+  });
+  function onScroll(){
+    var y = window.scrollY + 100, cur = secs[0];
+    secs.forEach(function(s){ if(s.t.offsetTop <= y) cur = s; });
+    links.forEach(function(a){ a.classList.remove('on'); });
+    if(cur) cur.a.classList.add('on');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

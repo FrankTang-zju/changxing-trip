@@ -1,0 +1,8 @@
+# 只发布网页需要的文件，其余全部忽略
+
+/*
+!/.gitignore
+!/README.md
+!/index.html
+!/assets/
+!/assets/**
